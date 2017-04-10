@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.IDao.UserMapper" >
+  <resultMap id="BaseResultMap" type="test.domain.User" >
+    <!--          -->
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="countryname" property="countryname" jdbcType="VARCHAR" />
+    <result column="countrycode" property="countrycode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    <!--          -->
+    Id, countryname, countrycode
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <!--          -->
+    select 
+    <include refid="Base_Column_List" />
+    from country
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <!--          -->
+    delete from country
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="test.domain.User" >
+    <!--          -->
+    insert into country (Id, countryname, countrycode
+      )
+    values (#{id,jdbcType=INTEGER}, #{countryname,jdbcType=VARCHAR}, #{countrycode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test.domain.User" >
+    <!--          -->
+    insert into country
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="countryname != null" >
+        countryname,
+      </if>
+      <if test="countrycode != null" >
+        countrycode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="countryname != null" >
+        #{countryname,jdbcType=VARCHAR},
+      </if>
+      <if test="countrycode != null" >
+        #{countrycode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="test.domain.User" >
+    <!--          -->
+    update country
+    <set >
+      <if test="countryname != null" >
+        countryname = #{countryname,jdbcType=VARCHAR},
+      </if>
+      <if test="countrycode != null" >
+        countrycode = #{countrycode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test.domain.User" >
+    <!--          -->
+    update country
+    set countryname = #{countryname,jdbcType=VARCHAR},
+      countrycode = #{countrycode,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

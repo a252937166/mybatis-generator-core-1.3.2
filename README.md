@@ -290,7 +290,7 @@
 ```
 ## 生成model、mapper、dao
 1. 首先要删除**generatorConfig.xml**里的注释，不然好像会出现xml解析错误
-2. 打开控制台，运行`Java -jar mybatis-generator-core-1.3.2.jar -configfile generatorConfig.xml -overwrite`就可以了
+2. 打开控制台，运行`Java -jar mybatis-generator-core-1.3.2.jar -configfile generatorConfig.xml -overwrite`就可以了，ORCALE运行`Java -jar mybatis-generator-core-1.3.6-SNAPSHOT.jar -configfile generatorConfig.xml -overwrite`
 ## 改进
 我改了jar包中的一些代码，现在支持字段注释，把`<property name="suppressAllComments" value="true"/> `的true改为false，会有数据库的字段注释。
 ## 参考博文
